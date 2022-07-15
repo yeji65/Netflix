@@ -19,7 +19,7 @@ const responsive = {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
+      items: 2
     }
   };
   
@@ -28,7 +28,7 @@ const MovieSlide = ({movie}) => {
   return (
     <div>
     <Carousel responsive={responsive}>
-    {movie.results.map((item)=><MovieCard item={item}/>)}
+    {movie && movie.results.map((item)=><MovieCard item={item}/>)}
   </Carousel>;</div>
   )
 }

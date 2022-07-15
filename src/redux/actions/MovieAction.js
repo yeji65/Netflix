@@ -42,8 +42,44 @@ function getMoviesDetail(id){
 
             }
         }
+
+function getMoviesReview(id){
+    
+    return async(dispatch)=>{
+        try{
+            dispatch({type:"get_single_moviesReview_request"})
+            const getReviewApi = await api.get(`movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`)
+            console.log("내가만든 getreviewApi",getReviewApi)
+            dispatch({
+                type:"get_single_moviesReview_success",
+                payload:{getReviewApi:getReviewApi.data}
+                })
+                }catch(error){
+                        dispatch({type:"get_single_moviesReview_falure"})
+                       }
         
-    export const MovieAction = {getMovies,getMoviesDetail};
+                    }
+                }
+
+function getMoviesRecommendation(id){
+    
+    return async(dispatch)=>{
+            try{
+                dispatch({type:"get_single_moviesRecommendation_request"})
+                const getRecommendationApi = await api.get(`movie/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`)
+                console.log("내가만든 getRecommendationApi",getRecommendationApi)
+                dispatch({
+                    type:"get_single_moviesRecommendation_success",
+                    payload:{getRecommendationApi:getRecommendationApi.data}
+                    })
+                    }catch(error){
+                        dispatch({type:"get_single_moviesRecommendation_falure"})
+                            }
+                        
+                        }
+                    }
+        
+    export const MovieAction = {getMovies,getMoviesDetail,getMoviesReview,getMoviesRecommendation};
 
 
         // axius("/movie/popular?api_key=<<api_key>>&language=en-US&page=1"

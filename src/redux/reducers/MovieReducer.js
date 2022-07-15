@@ -4,7 +4,9 @@ let initalState={
     upcomingMovies:"",
     loading:true,
     genreList:[],
-    selectedMovie:null
+    selectedMovie:null,
+    reviewedMovie:null,
+    RecommendationMovie:null
 }
 
 function MoviesReducer(state=initalState,action){
@@ -24,8 +26,21 @@ function MoviesReducer(state=initalState,action){
         case "get_single_movies_success":
             return{...state,
                 selectedMovie:payload.getDetailApi,
-                
                 }
+        case "get_single_moviesReview_request":
+            return{...state,loading:true}
+        case "get_single_moviesReview_success":
+            return{...state,
+                reviewedMovie:payload.getReviewApi,
+            }
+
+        case "get_single_moviesRecommendation_request":
+            return{...state,loading:true}
+        case "get_single_moviesRecommendation_success":
+            return{...state,
+                RecommendationMovie:payload.getRecommendationApi,
+            }
+                
         case "get_movies_falure":
             return {...state,loading:false}
         default:

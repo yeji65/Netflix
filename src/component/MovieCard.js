@@ -15,7 +15,9 @@ const MovieCard = ({item}) => {
     onClick={() => showDetail(item.id)}
     style={{backgroundImage:"url("+`https://www.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`+")"}}>
         <div className="overlay">
+          <div className="card_title">
             <h1>{item.title}</h1>
+          </div>
             <div>{item.genre_ids.map((id)=>(<Badge bg="danger">{genreList.find((item)=>item.id == id).name}</Badge>))}</div>
             <div>
                 <span>{item.vote_average}</span>
