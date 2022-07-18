@@ -46,3 +46,71 @@ body{
 .search{
   width:100px;
 }
+
+.card{
+  cursor: pointer;
+}
+
+.movie-img{
+  display: flex;
+  justify-content: flex-end;
+}
+.movie-info{
+  margin-right:20px;
+}
+.movie-adult{
+  font-weight:bolder;
+  color:rgb(141, 51, 51);
+}
+.movie-overview:after{
+  content: "";
+  display: block;
+  width: 500px;
+  border-bottom: 1px solid white;
+  margin: 20px 0px;
+}
+.movie-overview{
+  width: 500px;
+}
+.movie:after{
+  content: "";
+  display: block;
+  width: 500px;
+  border-bottom: 1px solid white;
+  margin: 20px 0px;
+}
+.movie-badge{
+  width: 15%;
+  
+}
+.movie-low{
+  /* padding: 10px; */
+  margin-bottom: 10px;
+}
+.movie-detail{
+  display: flex;
+  justify-content:center;
+  padding: 50px;
+}
+
+.movie-reviewline:after{
+  content: "";
+  display: block;
+  width: 1000px;
+  border-bottom: 1px solid white;
+  margin: 20px 0px;
+
+}
+.movie-review3 {
+  border-style: solid;
+  padding: 50px;
+  
+}
+.movie-review2 {
+  width: 1000px;
+  margin-left: 90px;
+  font-size: smaller;
+}
+
+
+
