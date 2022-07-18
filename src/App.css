@@ -49,6 +49,7 @@ body{
 
 .card{
   cursor: pointer;
+  /* background-size: cover; */
 }
 
 .movie-img{
@@ -104,6 +105,7 @@ body{
 .movie-review3 {
   border-style: solid;
   padding: 4%;
+  margin: 20px 0px;
   
 }
 .movie-review2 {
@@ -111,6 +113,10 @@ body{
   margin-left: 5%;
   font-size: smaller;
 }
+.movie-recommendation{
+  width: 100%; 
+}
+
 
 
 

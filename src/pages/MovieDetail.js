@@ -27,13 +27,14 @@ const MovieDetail = () => {
     dispatch(MovieAction.getMoviesRecommendation(id)))
    },[])
 
-   
+  
 
+   let link = "https://www.themoviedb.org/t/p/w300_and_h450_bestv2"
   return (
     <Container>
       <Row className='movie-detail'>
         <Col className="movie-img" >
-          <img src={"https://www.themoviedb.org/t/p/w300_and_h450_bestv2"+movie?.poster_path} />
+          <img src={link+movie?.poster_path} />
         </Col>
         <Col>
           {/* <div>{ movie.genres.map((id)=>(<Badge bg="danger">{id}</Badge>))}</div> */}
@@ -70,9 +71,28 @@ const MovieDetail = () => {
               <div>{review?.results[2].content}</div>
             </div>
           </div>
-          <div>
-            <img src={"https://www.themoviedb.org/t/p/w300_and_h450_bestv2"+recommendation?.results[0].poster_path}/>
+          <div >
+            {/* <img src={link+recommendation?.results[0].poster_path}/>
+            <img src={link+recommendation?.results[1].poster_path}/>
+            <img src={link+recommendation?.results[2].poster_path}/>
+            <img src={link+recommendation?.results[3].poster_path}/> */}
+            {/* {recommendation.map(menu=><Col lg={6}><img src={link+recommendation?.results[{menu}].poster_path}/></Col>)} */}
+           <Row className='movie-recommendation'>
+            <Col lg={4}><img src={link+recommendation?.results[0].poster_path}/></Col>
+            <Col lg={4}><img src={link+recommendation?.results[1].poster_path}/></Col>
+            <Col lg={4}><img src={link+recommendation?.results[2].poster_path}/></Col>
+            <Col lg={4}><img src={link+recommendation?.results[3].poster_path}/></Col>
+            <Col lg={4}><img src={link+recommendation?.results[4].poster_path}/></Col>
+            <Col lg={4}><img src={link+recommendation?.results[5].poster_path}/></Col>
+            </Row>
           </div>
+
+
+        
+
+
+
+
       </Row>
     </Container>
   )
