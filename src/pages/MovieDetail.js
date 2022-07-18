@@ -58,16 +58,16 @@ const MovieDetail = () => {
           </h1>
           <div className="movie-review3" >  
             <div className="movie-review2">
-              <h1 >{review && review?.results[0].author}</h1>
-              <div className="movie-reviewline">{review && review?.results[0].content}</div>
+              <h1 >{review?.results[0].author}</h1>
+              <div className="movie-reviewline">{review?.results[0].content}</div>
             </div>
             <div className="movie-review2">
-              <h1>{review && review?.results[1].author}</h1>
-              <div className="movie-reviewline">{review && review?.results[1].content}</div>
+              <h1>{review?.results[1].author}</h1>
+              <div className="movie-reviewline">{review?.results[1].content}</div>
             </div>
             <div className="movie-review2">
-              <h1>{review && review?.results[2].author}</h1>
-              <div>{review && review?.results[2].content}</div>
+              <h1>{review?.results[2].author}</h1>
+              <div>{review?.results[2].content}</div>
             </div>
           </div>
           <div>

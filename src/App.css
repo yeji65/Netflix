@@ -96,19 +96,19 @@ body{
 .movie-reviewline:after{
   content: "";
   display: block;
-  width: 1000px;
+  width: 100%;
   border-bottom: 1px solid white;
   margin: 20px 0px;
 
 }
 .movie-review3 {
   border-style: solid;
-  padding: 50px;
+  padding: 4%;
   
 }
 .movie-review2 {
-  width: 1000px;
-  margin-left: 90px;
+  width: 90%;
+  margin-left: 5%;
   font-size: smaller;
 }
 
