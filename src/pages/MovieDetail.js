@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import { Container,Row,Col } from 'react-bootstrap'
 import {useParams} from "react-router-dom"
 import { useEffect } from 'react'
@@ -7,6 +7,8 @@ import { MovieAction } from '../redux/actions/MovieAction'
 import { Badge } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'react-bootstrap/Button';
+import YouTube from 'react-youtube'
+import Modal from 'react-bootstrap/Modal';
 //import { fa-solid fa-star } from '@fortawesome/free-regular-svg-icons';
 
 const MovieDetail = () => {
@@ -16,7 +18,11 @@ const MovieDetail = () => {
   const review = useSelector((state)=>state.movie.reviewedMovie)
   const genreList = useSelector((state)=>state.movie.genreList)
   const recommendation = useSelector((state)=>state.movie.RecommendationMovie)
+  const videos = useSelector((state)=>state.movie.VideosMovie)
   
+  const [smShow, setSmShow] = useState(false);
+  const [lgShow, setLgShow] = useState(false);
+
   useEffect(()=>{
     dispatch(MovieAction.getMoviesDetail(id),
     dispatch(MovieAction.getMovies()))
@@ -25,6 +31,9 @@ const MovieDetail = () => {
    useEffect(()=>{
     dispatch(MovieAction.getMoviesReview(id),
     dispatch(MovieAction.getMoviesRecommendation(id)))
+   },[])
+   useEffect(()=>{
+    dispatch(MovieAction.getMoviesVideos(id))
    },[])
 
   
@@ -55,7 +64,7 @@ const MovieDetail = () => {
         </Col>
           <h1 className='movie-low'>
           <Button variant="danger">REVIEW</Button>{' '}
-          <Button variant="light">RELATED MOVIES</Button>{' '}
+          <Button variant="light" onClick={() => setLgShow(true)}>PREVIEW</Button>{' '}
           </h1>
           <div className="movie-review3" >  
             <div className="movie-review2">
@@ -71,6 +80,20 @@ const MovieDetail = () => {
               <div>{review?.results[2].content}</div>
             </div>
           </div>
+
+          <div>
+              <Modal
+                size="lg"
+                show={lgShow}
+                onHide={() => setLgShow(false)}
+                aria-labelledby="example-modal-sizes-title-lg"
+              >
+                <Modal.Header closeButton>
+                </Modal.Header>
+                <Modal.Body><YouTube videoId={videos?.results[0].key} /></Modal.Body>
+              </Modal>
+            </div>
+
           <div >
             {/* <img src={link+recommendation?.results[0].poster_path}/>
             <img src={link+recommendation?.results[1].poster_path}/>
@@ -85,13 +108,9 @@ const MovieDetail = () => {
             <Col lg={4}><img src={link+recommendation?.results[4].poster_path}/></Col>
             <Col lg={4}><img src={link+recommendation?.results[5].poster_path}/></Col>
             </Row>
+            
           </div>
-
-
         
-
-
-
 
       </Row>
     </Container>

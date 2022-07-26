@@ -6,7 +6,8 @@ let initalState={
     genreList:[],
     selectedMovie:null,
     reviewedMovie:null,
-    RecommendationMovie:null
+    RecommendationMovie:null,
+    VideosMovie:null
 }
 
 function MoviesReducer(state=initalState,action){
@@ -39,6 +40,13 @@ function MoviesReducer(state=initalState,action){
         case "get_single_moviesRecommendation_success":
             return{...state,
                 RecommendationMovie:payload.getRecommendationApi,
+            }
+
+        case "get_single_moviesVideos_request":
+            return{...state,loading:true}
+        case "get_single_moviesVideos_success":
+            return{...state,
+                VideosMovie:payload.getVideosApi,
             }
                 
         case "get_movies_falure":
