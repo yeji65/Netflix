@@ -9,9 +9,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from 'react-bootstrap/Button';
 import YouTube from 'react-youtube'
 import Modal from 'react-bootstrap/Modal';
+
 //import { fa-solid fa-star } from '@fortawesome/free-regular-svg-icons';
 
-const MovieDetail = () => {
+const MovieDetail = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch()
   const movie = useSelector((state)=>state.movie.selectedMovie)
@@ -20,21 +21,17 @@ const MovieDetail = () => {
   const recommendation = useSelector((state)=>state.movie.RecommendationMovie)
   const videos = useSelector((state)=>state.movie.VideosMovie)
   
-  const [smShow, setSmShow] = useState(false);
   const [lgShow, setLgShow] = useState(false);
 
-  useEffect(()=>{
-    dispatch(MovieAction.getMoviesDetail(id),
-    dispatch(MovieAction.getMovies()))
-   },[])
 
    useEffect(()=>{
+    dispatch(MovieAction.getMoviesDetail(id),
     dispatch(MovieAction.getMoviesReview(id),
-    dispatch(MovieAction.getMoviesRecommendation(id)))
+    dispatch(MovieAction.getMoviesRecommendation(id),
+    dispatch(MovieAction.getMovies(),
+    dispatch(MovieAction.getMoviesVideos(id))))))
    },[])
-   useEffect(()=>{
-    dispatch(MovieAction.getMoviesVideos(id))
-   },[])
+
 
   
 
@@ -47,6 +44,7 @@ const MovieDetail = () => {
         </Col>
         <Col>
           {/* <div>{ movie.genres.map((id)=>(<Badge bg="danger">{id}</Badge>))}</div> */}
+          {/* <div>{genreList && genreList.genre_ids.map((id)=>(<Badge bg="danger">{genreList.find((item)=>item.id == id).name}</Badge>))}</div> */}
           <h1>{movie?.title}</h1>
           <div className='movie'>
             <span className="movie-info">{movie?.vote_average}</span>
@@ -68,16 +66,16 @@ const MovieDetail = () => {
           </h1>
           <div className="movie-review3" >  
             <div className="movie-review2">
-              <h1 >{review?.results[0].author}</h1>
-              <div className="movie-reviewline">{review?.results[0].content}</div>
+              <h1 >{review && review.results[0].author}</h1>
+              <div className="movie-reviewline">{review &&review.results[0].content}</div>
             </div>
             <div className="movie-review2">
-              <h1>{review?.results[1].author}</h1>
-              <div className="movie-reviewline">{review?.results[1].content}</div>
+              <h1>{review &&review.results[1].author}</h1>
+              <div className="movie-reviewline">{review &&review.results[1].content}</div>
             </div>
             <div className="movie-review2">
-              <h1>{review?.results[2].author}</h1>
-              <div>{review?.results[2].content}</div>
+              <h1>{review &&review.results[2].author}</h1>
+              <div>{review &&review.results[2].content}</div>
             </div>
           </div>
 
@@ -95,18 +93,8 @@ const MovieDetail = () => {
             </div>
 
           <div >
-            {/* <img src={link+recommendation?.results[0].poster_path}/>
-            <img src={link+recommendation?.results[1].poster_path}/>
-            <img src={link+recommendation?.results[2].poster_path}/>
-            <img src={link+recommendation?.results[3].poster_path}/> */}
-            {/* {recommendation.map(menu=><Col lg={6}><img src={link+recommendation?.results[{menu}].poster_path}/></Col>)} */}
            <Row className='movie-recommendation'>
-            <Col lg={4}><img src={link+recommendation?.results[0].poster_path}/></Col>
-            <Col lg={4}><img src={link+recommendation?.results[1].poster_path}/></Col>
-            <Col lg={4}><img src={link+recommendation?.results[2].poster_path}/></Col>
-            <Col lg={4}><img src={link+recommendation?.results[3].poster_path}/></Col>
-            <Col lg={4}><img src={link+recommendation?.results[4].poster_path}/></Col>
-            <Col lg={4}><img src={link+recommendation?.results[5].poster_path}/></Col>
+            {recommendation && recommendation.results.map((item)=>(<Col lg={6}><img src= {link+item.poster_path} /></Col>))}
             </Row>
             
           </div>

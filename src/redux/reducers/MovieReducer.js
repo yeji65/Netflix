@@ -7,7 +7,8 @@ let initalState={
     selectedMovie:null,
     reviewedMovie:null,
     RecommendationMovie:null,
-    VideosMovie:null
+    VideosMovie:null,
+    SearchMovie:"",
 }
 
 function MoviesReducer(state=initalState,action){
@@ -48,6 +49,14 @@ function MoviesReducer(state=initalState,action){
             return{...state,
                 VideosMovie:payload.getVideosApi,
             }
+
+        case "get_search_request":
+            return{...state,loading:true}
+        case "get_search_success":
+            return{...state,
+                SearchMovie:payload.getSearchApi,
+                }
+
                 
         case "get_movies_falure":
             return {...state,loading:false}

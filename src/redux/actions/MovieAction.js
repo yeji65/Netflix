@@ -25,6 +25,24 @@ function getMovies(){
     }
 }
 
+function getMoviesSearch(searchQuery){
+    
+    return async(dispatch)=>{
+            try{
+                dispatch({type:"get_search_request"})
+                const getSearchApi = await api.get(`search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${searchQuery}`)
+                console.log("내가만든 getSearchApi",getSearchApi)
+                dispatch({
+                    type:"get_search_success",
+                    payload:{getSearchApi:getSearchApi.data}
+                    })
+                    }catch(error){
+                        dispatch({type:"get_search_falure"})
+                            }
+                        
+                        }
+                    }
+
 function getMoviesDetail(id){
     
     return async(dispatch)=>{
@@ -98,8 +116,11 @@ function getMoviesVideos(id){
                         }
                     }
 
+
+                    
+
         
-    export const MovieAction = {getMovies,getMoviesDetail,getMoviesReview,getMoviesRecommendation,getMoviesVideos};
+    export const MovieAction = {getMovies,getMoviesDetail,getMoviesReview,getMoviesRecommendation,getMoviesVideos,getMoviesSearch};
 
 
         // axius("/movie/popular?api_key=<<api_key>>&language=en-US&page=1"

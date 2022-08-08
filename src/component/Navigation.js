@@ -1,9 +1,21 @@
 import React from 'react'
 import {Navbar,Container,Form,Button,Nav,NavDropdown,FormControl} from "react-bootstrap"
 import { Link } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom" ;
 
 const Navigation = () => {
+  const navigate = useNavigate()
+
+  const search = (event)=>{
+    if(event.key =='Enter'){
+        //입력한 검색어를 읽어와서
+        let keyword = event.target.value
+        console.log("keyword",keyword)
+        // url 바꿔준다
+        navigate(`/query=${keyword}`)
+
+    }
+}
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
   <Container fluid>
@@ -28,6 +40,7 @@ const Navigation = () => {
           placeholder="Search"
           className="me-2"
           aria-label="Search"
+          onKeyPress={(event)=>search(event)}
         />
         <Button variant="outline-danger">Search</Button>
       </Form>

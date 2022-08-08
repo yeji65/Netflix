@@ -5,13 +5,26 @@ import { useDispatch,useSelector } from 'react-redux'
 import Banner from '../component/Banner'
 import MovieSlide from '../component/MovieSlide'
 import ClipLoader from "react-spinners/ClipLoader";
+import { useSearchParams } from 'react-router-dom'
 
 const Home = () => {
   const dispatch = useDispatch()
+  const [query,setQuery] = useSearchParams()
+
   const {popularMovies,topRatedMovies,upcomingMovies,loading} = useSelector((state)=>state.movie)
+
+  const getMovie =()=>{
+    let searchQuery = query.get("query") || ""
+    console.log("쿼리값은?",searchQuery);
+    dispatch(MovieAction.getMoviesSearch(searchQuery))
+}
+
   useEffect(()=>{
-    dispatch(MovieAction.getMovies())
-  },[])
+    dispatch(MovieAction.getMovies(),
+    getMovie())
+  },[query])
+
+
   //로딩이 true면 로딩스피너를 보여주고
   //false 면 데이터를 보여주고
 

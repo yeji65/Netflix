@@ -126,8 +126,32 @@ body{
 .movie-recommendation{
   width: 110%; 
   margin-bottom: 10px;
+  
 }
-
+.moviebanner{
+  height: 450px;
+  width: 300px;
+  margin-bottom: 10px;
+}
+.moviebanner::before{
+  position: absolute;
+  /* left:1; */
+  width:20%;
+  height: 450px;
+  content: '';
+  background: linear-gradient(to right,rgb(0, 0, 0),transparent);
+}
+.movietext{
+  width: 65%;
+  z-index: 1 ;
+}
+.moviecard{
+  display: flex;
+}
+.movie-left{
+  margin-top: 80px;
+  margin-left: 400px;
+}
 
 
 
