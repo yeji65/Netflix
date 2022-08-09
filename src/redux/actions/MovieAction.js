@@ -27,7 +27,7 @@ function getMovies(){
 
 function getMoviesSearch(searchQuery){
     
-    return async(dispatch)=>{
+    return async(dispatch,getState)=>{
             try{
                 dispatch({type:"get_search_request"})
                 const getSearchApi = await api.get(`search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${searchQuery}`)

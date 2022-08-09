@@ -47,10 +47,10 @@ const MovieDetail = (props) => {
           {/* <div>{genreList && genreList.genre_ids.map((id)=>(<Badge bg="danger">{genreList.find((item)=>item.id == id).name}</Badge>))}</div> */}
           <h1>{movie?.title}</h1>
           <div className='movie'>
-            <span className="movie-info">{movie?.vote_average}</span>
+            <span className="movie-average">{movie?.vote_average}</span>
             {/* <FontAwesomeIcon icon="fa-solid fa-star"/> */}
-            <span className="movie-info">{movie?.popularity}</span>
-            <span className="movie-adult">{movie && movie.adult?"청불":"Under 18"}</span>
+            <span className="movie-popularity"><b>{movie?.popularity}</b></span>
+            <span className="movie-adult"><b>{movie && movie.adult?"청불":"Under 18"}</b></span>
           </div>
           <div className="movie-overview" >{movie?.overview}</div>
           <div >
