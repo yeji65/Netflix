@@ -12,9 +12,9 @@ const Navigation = () => {
         let keyword = event.target.value
         console.log("keyword",keyword)
         // url 바꿔준다
-        navigate(`/query=${keyword}`)
+        navigate(`/Movies?query=${keyword}`)
 
-    }
+     }
 }
   return (
     <Navbar bg="dark" variant="dark" expand="lg">

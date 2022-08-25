@@ -8,21 +8,19 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useSearchParams } from 'react-router-dom'
 
 const Home = () => {
-  const dispatch = useDispatch()
-  const [query,setQuery] = useSearchParams()
-
   const {popularMovies,topRatedMovies,upcomingMovies,loading} = useSelector((state)=>state.movie)
-
-  const getMovie =()=>{
-    let searchQuery = query.get("query") || ""
-    console.log("쿼리값은?",searchQuery);
-    dispatch(MovieAction.getMoviesSearch(searchQuery))
-}
+ 
+  const dispatch = useDispatch()
+  // const [query,setQuery] = useSearchParams()
+//   const getMovie =()=>{
+//     let searchQuery = query.get("query") || ""
+//     console.log("쿼리값은?",searchQuery);
+//     dispatch(MovieAction.getMoviesSearch(searchQuery))
+// }
 
   useEffect(()=>{
-    dispatch(MovieAction.getMovies(),
-    getMovie())
-  },[query])
+    dispatch(MovieAction.getMovies())
+  },[])
 
 
   //로딩이 true면 로딩스피너를 보여주고

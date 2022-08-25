@@ -3,17 +3,39 @@ import { useDispatch,useSelector } from 'react-redux'
 import {Container,Row,Col} from 'react-bootstrap'
 import ProductCard from '../component/ProductCard'
 import Pagination from "react-js-pagination";
+import { MovieAction } from '../redux/actions/MovieAction';
+import { useSearchParams } from 'react-router-dom'
+import ClipLoader from "react-spinners/ClipLoader";
 
-const Movies = ({page,count,setPage}) => {
+const Movies = () => {
   const dispatch = useDispatch()
   const popularMovies = useSelector((state)=>state.movie.popularMovies)
-  // const [page, setPage] = useState(1);
-  
-  // const handlePageChange=(page)=> {
+  console.log("popularMovies",popularMovies)
+  const [page, setPage] = useState(1);
+  // const [query,setQuery] = useSearchParams()
+
+  // const handlePageChange = (page) => {
   //   setPage(page);
   //   console.log(page)
+  // };
+  
+  // const getMoviesSearch =()=>{
+  //   let searchQuery = query.get("query") || ""
+  //   console.log("쿼리값은?",searchQuery);
+  //   dispatch(MovieAction.getMoviesSearch(searchQuery))
   // }
-console.log("popularMovies",popularMovies)
+
+  // useEffect(()=>{
+  //   getMoviesSearch()
+  // },[query])
+    
+  // if(loading){
+  //   return <ClipLoader color="#ffff" loading={loading} size={150} />
+  // }
+
+  useEffect(()=>{
+    dispatch(MovieAction.getMovies())
+  },[])
 
   return (
     <div className='moviecard'>
@@ -25,16 +47,14 @@ console.log("popularMovies",popularMovies)
         {popularMovies && popularMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}
          </Row>
          <div>
-         <Pagination
+        {/* <Pagination
           activePage={page}
           itemsCountPerPage={20}
-          totalItemsCount={count}
+          totalItemsCount={popularMovies.total_pages}
           pageRangeDisplayed={5}
-          prevPageText={"‹"}
-          nextPageText={"›"}
-          onChange={setPage}
-        />
-        </div>
+          onChange={handlePageChange}
+        /> */}
+      </div>
       </Container>
 
     </div>

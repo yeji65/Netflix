@@ -12,6 +12,7 @@ function getMovies(){
         
         let [popularMovies,topRatedMovies,upcomingMovies,genreList] = await Promise.all([popularApi,topRatedApi,upComingApi,genreApi])
         console.log("genreList",genreList)
+        console.log("popularMoviespopularMovies",popularMovies)
         dispatch({
             type:"get_movies_success",
             payload:{popularMovies:popularMovies.data,
@@ -27,10 +28,10 @@ function getMovies(){
 
 function getMoviesSearch(searchQuery){
     
-    return async(dispatch,getState)=>{
+    return async(dispatch)=>{
             try{
                 dispatch({type:"get_search_request"})
-                const getSearchApi = await api.get(`search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${searchQuery}`)
+                const getSearchApi = await api.get(`/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${searchQuery}`)
                 console.log("내가만든 getSearchApi",getSearchApi)
                 dispatch({
                     type:"get_search_success",
@@ -116,8 +117,6 @@ function getMoviesVideos(id){
                         }
                     }
 
-
-                    
 
         
     export const MovieAction = {getMovies,getMoviesDetail,getMoviesReview,getMoviesRecommendation,getMoviesVideos,getMoviesSearch};
