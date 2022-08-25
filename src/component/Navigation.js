@@ -7,10 +7,10 @@ const Navigation = () => {
   const navigate = useNavigate()
 
   const search = (event)=>{
-    if(event.key =='Enter'){
+    if(event.key ==='Enter'){
         //입력한 검색어를 읽어와서
         let keyword = event.target.value
-        console.log("keyword",keyword)
+        console.log("keyword",keyword )
         // url 바꿔준다
         navigate(`/Movies?query=${keyword}`)
 
@@ -34,16 +34,18 @@ const Navigation = () => {
         <Link to="/" className='nav-item'>Home</Link>
         <Link to="/Movies" className='nav-item'>Movies</Link>
       </Nav>
-      <Form className="d-flex">
-        <FormControl
-          type="search"
+      {/* <Form className="d-flex"> */}
+      <div>
+        <input
+          type="text"
           placeholder="Search"
           className="me-2"
           aria-label="Search"
           onKeyPress={(event)=>search(event)}
         />
         <Button variant="outline-danger">Search</Button>
-      </Form>
+        </div>
+      {/* </Form> */}
     </Navbar.Collapse>
   </Container>
 </Navbar>

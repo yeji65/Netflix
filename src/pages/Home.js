@@ -11,12 +11,6 @@ const Home = () => {
   const {popularMovies,topRatedMovies,upcomingMovies,loading} = useSelector((state)=>state.movie)
  
   const dispatch = useDispatch()
-  // const [query,setQuery] = useSearchParams()
-//   const getMovie =()=>{
-//     let searchQuery = query.get("query") || ""
-//     console.log("쿼리값은?",searchQuery);
-//     dispatch(MovieAction.getMoviesSearch(searchQuery))
-// }
 
   useEffect(()=>{
     dispatch(MovieAction.getMovies())

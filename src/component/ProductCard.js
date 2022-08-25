@@ -14,7 +14,7 @@ const ProductCard = ({item}) => {
             <h2 className='movie-h2'>{item?.title}</h2>
             </div>
             <div className='movie-line'>
-            <p>{item.genre_ids.map((id)=>(<Badge bg="danger">{genreList.find((item)=>item.id == id).name}</Badge>))}</p>
+            <p>{item.genre_ids.map((id)=>(<Badge bg="danger">{genreList.find((item)=>item.id == id)?.name}</Badge>))}</p>
             <p className='movietext'> {item?.overview}</p>
             <span className="movie-average">{item?.vote_average}</span>
             <span className="movie-popularity">{item?.popularity}</span>

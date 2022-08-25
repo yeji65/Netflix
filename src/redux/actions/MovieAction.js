@@ -12,7 +12,6 @@ function getMovies(){
         
         let [popularMovies,topRatedMovies,upcomingMovies,genreList] = await Promise.all([popularApi,topRatedApi,upComingApi,genreApi])
         console.log("genreList",genreList)
-        console.log("popularMoviespopularMovies",popularMovies)
         dispatch({
             type:"get_movies_success",
             payload:{popularMovies:popularMovies.data,
