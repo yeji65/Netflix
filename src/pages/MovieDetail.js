@@ -36,6 +36,8 @@ const MovieDetail = (props) => {
   
 
    let link = "https://www.themoviedb.org/t/p/w300_and_h450_bestv2"
+
+  
   return (
     <Container>
       <Row className='movie-detail'>
@@ -93,8 +95,8 @@ const MovieDetail = (props) => {
             </div>
 
           <div >
-           <Row className='movie-recommendation'>
-            {recommendation && recommendation.results.map((item)=>(<Col lg={6}><img src= {link+item.poster_path} /></Col>))}
+           <Row >
+            {recommendation && recommendation.results.map((item)=>(<Col lg={6} ><img src= {link+item.poster_path} className='movie-recommendation' /></Col>))}
             </Row>
             
           </div>

@@ -31,6 +31,7 @@ body{
 .card{
   width:80%;
   height: 250%;
+
 }
 
 .overlay{
@@ -118,22 +119,24 @@ body{
   font-size: smaller;
 }
 .movie-recommendation{
-  width: 110%; 
-  margin-bottom: 10px;
-  
+  width: 90%; 
+  height: 70%;
+  margin-bottom: -350px;
 }
+
 .moviebanner{
-  height: 450px;
-  width: 300px;
-  margin-bottom: 10px;
+  height: 510px;
+  width: 350px;
+  margin-bottom: 15px;
+  border-radius:10%;
+  background-size: 100%;
 }
-.moviebanner::before{
-  position: absolute;
-  /* left:1; */
-  width:35%;
-  height: 450px;
-  content: '';
+
+.movie-total{
+  padding: 30px;
   background: linear-gradient(to right,rgb(0, 0, 0),transparent);
+  height: 510px;
+  border-radius:10%
 }
 .movietext{
   position: relative;
@@ -141,17 +144,15 @@ body{
   z-index: 1 ;
   white-space:normal;
   display: -webkit-box;
-  -webkit-line-clamp: 8;
+  -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .moviecard{
   display: flex;
+  width: 95%;
 }
-.movie-left{
-  margin-top: 80px;
-  margin-left: 400px;
-}
+
 .movie-h2{
   margin-left: 10px;
   position: relative;
@@ -162,15 +163,16 @@ font-size: x-large;
 }
 .movie-main{
   display: flex;
-  padding-top: 10px;
+  padding-top: 20px;
+  /* padding-left: 10px; */
 }
 .movie-line{
   position: relative;
 }
 .movie-popularity{
-font-weight: 900;
-margin: 10px;
-font-family: "Noto Sans CJK KR";
+  font-weight: 900;
+  margin: 10px;
+  font-family: "Noto Sans CJK KR";
 }
 .movie-adult{
   font-weight: 900;
@@ -178,6 +180,41 @@ font-family: "Noto Sans CJK KR";
   color:rgb(161, 21, 21);
   font-style: italic;
 }
+.filter{
+  content: "";
+  display: block;
+  width: 35%;
+  height: 4%;
+  border: 2px solid white;
+  margin: 60px 45%;
+  border-radius:10%
+}
+.genres{
+  content: "";
+  display: block;
+  width: 35%;
+  height: 8%;
+  border: 2px solid white;
+  margin: 60px 45%;
+  border-radius:10%;
+  
+}
+
+.title::after{
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid white;
+  padding: 5px;
+}
+
+.title{
+  margin: 15px;
+  color: red;
+}
 .sort{
-  padding: 50px;
+  color: #FFF !important;
+}
+.genre_button{
+  padding-left: 20px;
 }
