@@ -6,6 +6,7 @@ import Pagination from "react-js-pagination";
 import { MovieAction } from '../redux/actions/MovieAction';
 import { useSearchParams } from 'react-router-dom'
 import ClipLoader from "react-spinners/ClipLoader";
+import Sort from"../component/Sort";
 
 const Movies = () => {
   const dispatch = useDispatch()
@@ -32,7 +33,8 @@ const Movies = () => {
   return (
     <div className='moviecard'>
       <Container>
-       <Col className='movie-left'><input type="text"/></Col>
+       {/* <Col className='movie-left'><input type="text"/></Col> */}
+        <Sort />
       </Container>
       <Container>
         {searchMovies?

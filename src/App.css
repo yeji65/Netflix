@@ -178,4 +178,6 @@ font-family: "Noto Sans CJK KR";
   color:rgb(161, 21, 21);
   font-style: italic;
 }
-
+.sort{
+  padding: 50px;
+}
