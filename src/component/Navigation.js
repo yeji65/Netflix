@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Navbar,Container,Form,Button,Nav,NavDropdown,FormControl} from "react-bootstrap"
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom" ;
@@ -12,6 +12,7 @@ const Navigation = () => {
         let keyword = event.target.value
         // url 바꿔준다
         navigate(`/Movies?query=${keyword}`)
+      
 
      }
 }
