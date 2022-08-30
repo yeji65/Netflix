@@ -5,10 +5,11 @@ import ProductCard from '../component/ProductCard'
 import Pagination from "react-js-pagination";
 import { MovieAction } from '../redux/actions/MovieAction';
 import { useSearchParams } from 'react-router-dom'
-import ClipLoader from "react-spinners/ClipLoader";
 import Dropdown from"../component/Dropdown";
 import Button from 'react-bootstrap/Button';
-
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Movies = () => {
   const dispatch = useDispatch()
@@ -17,7 +18,9 @@ const Movies = () => {
   const genreList = useSelector((state)=>state.movie.genreList)
   // const [page, setPage] = useState(1);
   const [query,setQuery] = useSearchParams()
-  const [genreState,setGenreState] = useState()
+  const [genreState,setGenreState] = useState("")
+  const [userSelect,setUserSelect] = useState("")
+  const array = popularMovies.results.filter((e)=>e.genre_ids.find(item=>(item == genreState)))
 
   // const handlePageChange = (page) => {
   //   setPage(page);
@@ -29,18 +32,27 @@ const Movies = () => {
     dispatch(MovieAction.getMoviesSearch(searchQuery))
   }
 
-  const change = (id) => {
-    console.log("id",id)
+   const change = (id) => {
     setGenreState(id.id)
-    let data = popularMovies.results.map((e)=>e.genre_ids.filter(item=>item == id.id))
-    console.log("data",data)
-
-    if(popularMovies.results.map((e)=>e.genre_ids.filter(item=>item == genreState))){
-      // setGenreState(<Row>{popularMovies && popularMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>)
- 
-      console.log("genreState",genreState)
-    }
+    console.log("id",id)
   }
+
+   
+
+  //  let dataSort = popularMovies.results?.map((e)=>e.release_date).sort() 
+  //  console.log("dataSort",dataSort)
+
+   const handleChange = () => {
+    // console.log("popularMovies",popularMovies)
+    // let list = {...popularMovies}
+    // list.results.map((e)=>e.release_date).sort() 
+    // // setUserSelect(list);
+    // console.log("list123456",list)
+
+    
+    // {(userSelect == "Release Day(Desc)")?(item.item.results.release_date.sort()):""}
+    // <Row>{popularMovies && popularMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>)).release_date}</Row>
+  } 
 
   useEffect(()=>{
     dispatch(MovieAction.getMovies(),
@@ -52,22 +64,53 @@ const Movies = () => {
     <div className='moviecard'>
       <Container>
         <div  className='filter'>
-          <h3 className='title'><Dropdown item={popularMovies}/></h3>
+          <h3 className='title'>
+            <Navbar variant="dark" expand="lg">
+              <Container fluid>
+                <Navbar.Toggle aria-controls="navbar-dark-example" /> 
+                <Navbar.Collapse id="navbar-dark-example">
+                  <Nav>
+                    <NavDropdown 
+                      id="nav-dropdown-dark-example"
+                      title="Sort"
+                      menuVariant="dark"
+                      className='sort'
+                    >
+                      <NavDropdown.Item onClick={()=>handleChange()}>Popularity(Desc)</NavDropdown.Item>
+                      <NavDropdown.Item onClick={()=>handleChange("Popularity(asc)")}>Popularity(asc)</NavDropdown.Item>
+                      <NavDropdown.Item onClick={()=>handleChange("Release Day(Desc)")}>Release Day(Desc)</NavDropdown.Item>
+                      <NavDropdown.Item onClick={()=>handleChange("Release Day(asc)")}>Release Day(asc)</NavDropdown.Item>
+                    </NavDropdown>
+                  </Nav>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
+            </h3>
         </div>
         <div  className='filter'>
           <h3 className='title'>Filter</h3>
         </div>
         <div className='genres'>
           <h3 className='title'>Genres</h3>
-          <p className='genre_button'>{genreList?.map((e)=>(<Button variant="danger" onClick={()=>change(e)}>{e.name}</Button>))}</p>
+          <p className='genre_button'>{genreList?.map((e)=>(<Button variant="danger" className="movie-genre" 
+          onClick={()=>change(e)}>{e.name}</Button>))}</p>
         </div>
      
       </Container>
       <Container>
-        {searchMovies?
-        <Row>{searchMovies && searchMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>:
-        <Row>{popularMovies && popularMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>
-      }
+        {/* {userSelect == "Release Day(asc)"?(
+        <Row>{popularMovies.results?.map((e)=><Col lg={6}><ProdctCard_Sort item={e} /></Col>).sort() }</Row>
+        ):( */}
+          <div>
+            {genreState?(<Row>{array && array.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>)
+            :(
+            searchMovies?(
+            <Row>{searchMovies && searchMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>):(
+            <Row>{popularMovies && popularMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>
+            )
+            )}
+        </div>
+      {/* )} */}
     
          <div>
         {/* <Pagination

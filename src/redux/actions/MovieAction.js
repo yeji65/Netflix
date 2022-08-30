@@ -11,7 +11,6 @@ function getMovies(){
         const genreApi = api.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`)
         
         let [popularMovies,topRatedMovies,upcomingMovies,genreList] = await Promise.all([popularApi,topRatedApi,upComingApi,genreApi])
-        console.log("genreList",genreList)
         dispatch({
             type:"get_movies_success",
             payload:{popularMovies:popularMovies.data,

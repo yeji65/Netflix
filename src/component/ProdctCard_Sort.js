@@ -2,8 +2,11 @@ import React from 'react'
 import {useSelector } from 'react-redux'
 import { Badge } from 'react-bootstrap'
 
-const ProductCard = ({item}) => {
+const ProdctCard_Sort = ({item}) => {
+    console.log("itemitemitemitem",item)
     const genreList = useSelector((state)=>state.movie.genreList)
+    const list = [item]
+    console.log("list",list)
   return (
     <div className='moviebanner'  
     style={{backgroundImage:
@@ -25,4 +28,4 @@ const ProductCard = ({item}) => {
   )
 }
 
-export default ProductCard
+export default ProdctCard_Sort
