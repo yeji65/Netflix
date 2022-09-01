@@ -186,10 +186,10 @@ const Movies = () => {
         </div>
     
          <div>
-        <Pagination
+        <Pagination className="page"
           activePage={page}
           itemsCountPerPage={20}
-          totalItemsCount={popularMovies.total_pages}
+          totalItemsCount={10000}
           pageRangeDisplayed={5}
           prevPageText={'<'}
           nextPageText={'>'}
