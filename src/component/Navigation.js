@@ -12,9 +12,7 @@ const Navigation = () => {
         let keyword = event.target.value
         // url 바꿔준다
         navigate(`/Movies?query=${keyword}`)
-      
-
-     }
+    } 
 }
   return (
     <Navbar bg="dark" variant="dark" expand="lg">

@@ -5,8 +5,7 @@ import { Badge } from 'react-bootstrap'
 const ProdctCard_Sort = ({item}) => {
     console.log("itemitemitemitem",item)
     const genreList = useSelector((state)=>state.movie.genreList)
-    const list = [item]
-    console.log("list",list)
+    
   return (
     <div className='moviebanner'  
     style={{backgroundImage:

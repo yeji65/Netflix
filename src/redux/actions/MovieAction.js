@@ -16,13 +16,36 @@ function getMovies(){
             payload:{popularMovies:popularMovies.data,
                 topRatedMovies:topRatedMovies.data,
                 upcomingMovies:upcomingMovies.data,
-                genreList:genreList.data.genres}
+                genreList:genreList.data.genres,
+                }
         })
        }catch(error){
         dispatch({type:"get_movies_falure"})
        }
     }
 }
+
+
+
+function getPopularTotal(page){
+    
+    return async(dispatch)=>{
+            try{
+                dispatch({type:"get_populartotal_request"})
+                const popularTotalApi =await api.get(`/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`)
+                console.log("내가만든 popularTotalApi",popularTotalApi)
+                dispatch({
+                    type:"get_populartotal_success",
+                    payload:{popularTotalApi:popularTotalApi.data}
+                    })
+                    }catch(error){
+                        dispatch({type:"get_populartotal_falure"})
+                            }
+                        
+                        }
+                    }
+
+
 
 function getMoviesSearch(searchQuery){
     
@@ -117,7 +140,7 @@ function getMoviesVideos(id){
 
 
         
-    export const MovieAction = {getMovies,getMoviesDetail,getMoviesReview,getMoviesRecommendation,getMoviesVideos,getMoviesSearch};
+    export const MovieAction = {getMovies,getMoviesDetail,getMoviesReview,getMoviesRecommendation,getMoviesVideos,getMoviesSearch,getPopularTotal};
 
 
         // axius("/movie/popular?api_key=<<api_key>>&language=en-US&page=1"
