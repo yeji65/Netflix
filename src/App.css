@@ -195,11 +195,20 @@ font-size: x-large;
   color:rgb(161, 21, 21);
   font-style: italic;
 }
+.filter-sort{
+  content: "";
+  display: block;
+  width: 35%;
+  height: 130px;
+  border: 2px solid white;
+  margin: 60px 45%;
+  border-radius:10%
+}
 .filter{
   content: "";
   display: block;
   width: 35%;
-  height: 180px;
+  height: 250px;
   border: 2px solid white;
   margin: 60px 45%;
   border-radius:10%
@@ -223,7 +232,7 @@ font-size: x-large;
 }
 
 .title{
-  margin: 15px;
+  margin-top: 15px;
   color: red;
 }
 .sort{
@@ -287,3 +296,48 @@ ul.pagination li.active a {
   height: 30px;
   color: red;
 } */
+
+.horizontal-slider {
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  margin: auto;
+}
+.example-thumb {
+  cursor: pointer;
+  position: absolute;
+  z-index: 100;
+  background: #ffffff;
+  border: 5px solid #3774ff;
+  border-radius: 100%;
+  display: block;
+  box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
+}
+.example-thumb.active {
+  background-color: grey;
+}
+
+.example-track {
+  position: relative;
+  background: #ddd;
+}
+.example-track.example-track-0 {
+  background: #83a9ff;
+}
+.horizontal-slider .example-track {
+  top: 20px;
+  height: 4px;
+}
+.horizontal-slider .example-thumb {
+  top: 12px;
+  width: 10px;
+  outline: none;
+  height: 10px;
+  line-height: 38px;
+}
+.slider{
+  margin: 20px;
+}
+
+
+
