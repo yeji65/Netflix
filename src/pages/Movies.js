@@ -44,12 +44,13 @@ const Movies = () => {
   //genres
    const change = (id) => {
     setGenreState(id.id)
+    console.log("d",id)
   }
   
   // sort
    const handleChange = (choice) => {
     setSortState(choice)
-console.log("sortState",sortState)
+    console.log("sortState",sortState)
 
     // {sortState == "Release Day(asc)"?(<Row>{popularMovies && popularMovies.results.sort((a,b)=>{
     //   if(a.release_date > b.release_date) return 1;
@@ -61,26 +62,7 @@ console.log("sortState",sortState)
     //   if(a.release_date > b.release_date) return -1;
     //   return 0;
     // }).map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>)}
-
-
-
-    // {sortState == "Release Day(asc)"?(<Row>{popularMovies && popularMovies.results.sort((a,b)=>{
-    //   if(a.release_date > b.release_date) return 1;
-    //   if(a.release_date < b.release_date) return -1;
-    //   return 0;
-    // }).map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>):(
-    //   <Row>{popularMovies && popularMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>
-    // )}
-
-    // {sortState == "Release Day(desc)"?(<Row>{popularMovies && popularMovies.results.sort((a,b)=>{
-    //   if(a.release_date < b.release_date) return 1;
-    //   if(a.release_date > b.release_date) return -1;
-    //   return 0;
-    // }).map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>):(
-    //   <Row>{popularMovies && popularMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>
-    // )}
-
-
+    
   }
 
   //filter
@@ -159,15 +141,26 @@ const handleInput = (e) => {
       <Container>
           <div>
           {sortState == "Release Day(asc)"?(<Row>{popularMovies && popularMovies.results.sort((a,b)=>{
-      if(a.release_date > b.release_date) return 1;
-      if(a.release_date < b.release_date) return -1;
-      return 0;
-    }).map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>):(
+          if(a.release_date > b.release_date) return 1;
+          if(a.release_date < b.release_date) return -1;
+          return 0;
+           }).map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>):(
             searchMovies?(<Row>{searchMovies && searchMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>):
             (genreState?(<Row>{array && array.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>):(
             popularTotalMovie?(<Row>{popularTotalMovie && popularTotalMovie.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>):(
             <Row>{popularMovies && popularMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>)
             )))}
+
+            {/* {(function(){
+              if(popularTotalMovie != null){
+                return(<Row>{popularTotalMovie && popularTotalMovie.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>)
+              }else if(genreState != null){
+                return(<Row>{searchMovies && searchMovies.results.map((item)=>(<Col lg={6}><ProductCard item={item} /></Col>))}</Row>)
+              }
+            })()} */}
+
+
+
          </div>
 
          <div>

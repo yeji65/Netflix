@@ -12,6 +12,7 @@ body{
   height: 600px;
   display: flex;
   align-items: center;
+  background-size : 2150px 600px
 }
 .banner::before{
   position: absolute;
@@ -70,6 +71,10 @@ body{
 }
 .movie-genre{
   margin: 3px;
+  /* content: ''; */
+  background: linear-gradient(to right,rgb(34, 30, 30),red,transparent);
+  /* border: 5px solid white; */
+  /* border-radius:10% */
 }
 .movie-overview:after{
   content: "";
