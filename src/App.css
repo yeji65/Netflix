@@ -1,18 +1,20 @@
 body{
   background-color: black !important ;
-  color : white !important
+  color : white !important;
 
 }
 .nav-item{
   color:rgb(141, 51, 51);
   text-decoration: none;
   margin-right: 20px;
+  
 }
 .banner{
   height: 600px;
   display: flex;
   align-items: center;
-  background-size : 2150px 600px
+  background-size : 2150px 600px;
+  
 }
 .banner::before{
   position: absolute;
@@ -30,18 +32,20 @@ body{
   z-index: 1;
 }
 .card{
-  width:80%;
-  height: 250%;
+  width:90%;
+  height: 220px;
+  
 }
 
 .overlay{
   opacity: 0;
 }
  
-/* .card:hover  {
-  transform: scale(1.1);
-  z-index: 1; 
-} */
+/* .card:hover  img{
+  width: 450px;
+  height: 250px;
+  transition: all 0.5s
+ }   */
 
 
 .card:hover .overlay{

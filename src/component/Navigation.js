@@ -7,6 +7,7 @@ const Navigation = () => {
   const navigate = useNavigate()
 
   const search = (event)=>{
+    event.preventDefault()
     if(event.key ==='Enter'){
         //입력한 검색어를 읽어와서
         let keyword = event.target.value
@@ -14,6 +15,7 @@ const Navigation = () => {
         navigate(`/Movies?query=${keyword}`)
     } 
 }
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
   <Container fluid>
@@ -33,7 +35,7 @@ const Navigation = () => {
         <Link to="/Movies" className='nav-item'>Movies</Link>
       </Nav>
       {/* <Form className="d-flex"> */}
-      <div>
+      <form>
         <input
           type="text"
           placeholder="Search"
@@ -42,7 +44,7 @@ const Navigation = () => {
           onKeyPress={(event)=>search(event)}
         />
         <Button variant="outline-danger">Search</Button>
-        </div>
+        </form>
       {/* </Form> */}
     </Navbar.Collapse>
   </Container>

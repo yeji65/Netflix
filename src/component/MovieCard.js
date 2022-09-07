@@ -9,11 +9,14 @@ const MovieCard = ({item}) => {
   const showDetail =(id)=>{
     navigate(`/movies/${id}`)
   }
+
+
+
   return (
     <div 
     className="card"
     onClick={() => showDetail(item.id)}
-    style={{backgroundImage:"url("+`https://www.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`+")"}}>
+    style={{backgroundImage:"url("+`https://www.themoviedb.org/t/p/w440_and_h660_face/${item.poster_path}`+")"} } >
         <div className="overlay">
           <div className="card_title">
             <h1>{item.title}</h1>
