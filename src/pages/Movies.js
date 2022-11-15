@@ -74,7 +74,7 @@ const handleInput = (e) => {
 	set_minValue(e.minValue);
   // console.log("minValue",minValue)
 	set_maxValue(e.maxValue);
-  console.log("maxValue",maxValue)
+  // console.log("maxValue",maxValue)
   let test = popularMovies.results?.filter((e)=>e.release_date.substring(0,4) == maxValue)
   console.log("test",test)
 }

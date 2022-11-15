@@ -1,4 +1,5 @@
 import api from "../api"
+import {movieActions} from "../reducers/MovieReducer"
 
 const API_KEY = process.env.REACT_APP_API_KEY
 function getMovies(){
@@ -9,16 +10,22 @@ function getMovies(){
         const topRatedApi = api.get(`/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`)
         const upComingApi = api.get(`/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`)
         const genreApi = api.get(`/genre/movie/list?api_key=${API_KEY}&language=en-US`)
+
         
         let [popularMovies,topRatedMovies,upcomingMovies,genreList] = await Promise.all([popularApi,topRatedApi,upComingApi,genreApi])
-        dispatch({
-            type:"get_movies_success",
-            payload:{popularMovies:popularMovies.data,
-                topRatedMovies:topRatedMovies.data,
-                upcomingMovies:upcomingMovies.data,
-                genreList:genreList.data.genres,
-                }
-        })
+        // dispatch({
+        //     type:"get_movies_success",
+        //     payload:{popularMovies:popularMovies.data,
+        //         topRatedMovies:topRatedMovies.data,
+        //         upcomingMovies:upcomingMovies.data,
+        //         genreList:genreList.data.genres,
+        //         }
+        // })
+        dispatch(movieActions.getMovie({popularMovies:popularMovies.data,
+            topRatedMovies:topRatedMovies.data,
+            upcomingMovies:upcomingMovies.data,
+            genreList:genreList.data.genres,
+            }))
        }catch(error){
         dispatch({type:"get_movies_falure"})
        }
@@ -34,10 +41,11 @@ function getPopularTotal(page){
                 dispatch({type:"get_populartotal_request"})
                 const popularTotalApi =await api.get(`/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`)
                 console.log("내가만든 popularTotalApi",popularTotalApi)
-                dispatch({
-                    type:"get_populartotal_success",
-                    payload:{popularTotalApi:popularTotalApi.data}
-                    })
+                // dispatch({
+                    // type:"get_populartotal_success",
+                    // payload:{popularTotalApi:popularTotalApi.data}
+                    // })
+                    dispatch(movieActions.getPopularTotal({popularTotalApi:popularTotalApi.data}))
                     }catch(error){
                         dispatch({type:"get_populartotal_falure"})
                             }
@@ -54,10 +62,11 @@ function getMoviesSearch(searchQuery){
                 dispatch({type:"get_search_request"})
                 const getSearchApi = await api.get(`/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${searchQuery}`)
                 console.log("내가만든 getSearchApi",getSearchApi)
-                dispatch({
-                    type:"get_search_success",
-                    payload:{getSearchApi:getSearchApi.data}
-                    })
+                // dispatch({
+                //     type:"get_search_success",
+                //     payload:{getSearchApi:getSearchApi.data}
+                //     })
+                dispatch(movieActions.getSearch({getSearchApi:getSearchApi.data}))
                     }catch(error){
                         dispatch({type:"get_search_falure"})
                             }
@@ -72,10 +81,11 @@ function getMoviesDetail(id){
             dispatch({type:"get_single_movies_request"})
             const getDetailApi = await api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`)
             console.log("내가만든 getDetailApi",getDetailApi)
-            dispatch({
-                type:"get_single_movies_success",
-                payload:{getDetailApi:getDetailApi.data}
-                })
+            // dispatch({
+            //     type:"get_single_movies_success",
+            //     payload:{getDetailApi:getDetailApi.data}
+            //     })
+            dispatch(movieActions.getSingleMovie({getDetailApi:getDetailApi.data}))
         }catch(error){
                 dispatch({type:"get_single_movies_falure"})
                }
@@ -90,10 +100,11 @@ function getMoviesReview(id){
             dispatch({type:"get_single_moviesReview_request"})
             const getReviewApi = await api.get(`movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`)
             console.log("내가만든 getreviewApi",getReviewApi)
-            dispatch({
-                type:"get_single_moviesReview_success",
-                payload:{getReviewApi:getReviewApi.data}
-                })
+            // dispatch({
+            //     type:"get_single_moviesReview_success",
+            //     payload:{getReviewApi:getReviewApi.data}
+            //     })
+            dispatch(movieActions.getSingleMovieReview({getReviewApi:getReviewApi.data}))
                 }catch(error){
                         dispatch({type:"get_single_moviesReview_falure"})
                        }
@@ -108,10 +119,11 @@ function getMoviesRecommendation(id){
                 dispatch({type:"get_single_moviesRecommendation_request"})
                 const getRecommendationApi = await api.get(`movie/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`)
                 console.log("내가만든 getRecommendationApi",getRecommendationApi)
-                dispatch({
-                    type:"get_single_moviesRecommendation_success",
-                    payload:{getRecommendationApi:getRecommendationApi.data}
-                    })
+                // dispatch({
+                //     type:"get_single_moviesRecommendation_success",
+                //     payload:{getRecommendationApi:getRecommendationApi.data}
+                //     })
+                dispatch(movieActions.getSingleMovieRecommend({getRecommendationApi:getRecommendationApi.data}))
                     }catch(error){
                         dispatch({type:"get_single_moviesRecommendation_falure"})
                             }
@@ -127,10 +139,11 @@ function getMoviesVideos(id){
                 dispatch({type:"get_single_moviesVideos_request"})
                 const getVideosApi = await api.get(`movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
                 console.log("내가만든 getVideosApi",getVideosApi)
-                dispatch({
-                    type:"get_single_moviesVideos_success",
-                    payload:{getVideosApi:getVideosApi.data}
-                    })
+                // dispatch({
+                //     type:"get_single_moviesVideos_success",
+                //     payload:{getVideosApi:getVideosApi.data}
+                //     })
+                dispatch(movieActions.getSingleMovieVideo({getVideosApi:getVideosApi.data}))
                     }catch(error){
                         dispatch({type:"get_single_moviesVideos_falure"})
                             }

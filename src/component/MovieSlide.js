@@ -22,21 +22,11 @@ const responsive = {
       items: 1
     }
   };
-  const zoomIn = (event) => {
-    event.target.style.width = "600px";
-    event.target.style.height = "336px";
-    event.target.style.transition = "all 0.5s";
-  }
 
-  const zoomOut = (event) => {
-    event.target.style.width = "500px";
-    event.target.style.height = "280px";
-    event.target.style.transition = "all 0.5s";
-  }
 
 const MovieSlide = ({movie}) => {
   return (
-    <div onmouseenter={(event)=>zoomIn(event)} onmouseleave={(event)=>zoomOut(event)}>
+    <div >
     <Carousel responsive={responsive}  autoPlay={responsive.deviceType !== "mobile" ? true : false} autoPlaySpeed={2000} keyBoardControl={true}>
     {movie && movie.results.map((item)=><MovieCard item={item}/>)}
   </Carousel>;</div>
